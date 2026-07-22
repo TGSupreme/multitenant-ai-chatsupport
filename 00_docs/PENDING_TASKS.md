@@ -33,8 +33,8 @@
 - [ ] Build `POST /chat` API endpoint (`app/api/v1/chat.py`).
 
 ### Phase 7: Document Management CRUD
-- [ ] Implement `GET /documents` endpoint (listing distinct files & chunk counts for a tenant).
-- [ ] Implement `DELETE /documents` endpoint (deleting specific file or wiping all tenant documents).
+- [x] Implement `GET /documents` endpoint (listing distinct files & chunk counts for a tenant).
+- [x] Implement `DELETE /documents` endpoint (deleting specific file or wiping all tenant documents if file_name is omitted).
 
 ### Phase 8: Verification & Testing
 - [ ] Create automated API test suite for end-to-end multi-tenant RAG validation.

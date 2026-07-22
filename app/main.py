@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
+from api.v1.documents import router as documents_router
 from api.v1.ingest import router as ingest_router
 from core.config import settings
 from core.errors import register_exception_handlers
@@ -29,6 +30,7 @@ register_exception_handlers(app)
 
 # Mount API Routers Directly
 app.include_router(ingest_router)
+app.include_router(documents_router)
 
 
 @app.get("/", tags=["Health Check"])
