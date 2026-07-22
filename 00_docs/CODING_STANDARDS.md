@@ -35,12 +35,7 @@ app/
 │   ├── ingestion.py       # In-memory PDF parser (io.BytesIO) & semantic chunking
 │   ├── rag_service.py     # RAG retriever & context aggregation
 │   ├── prompt_builder.py  # System prompt composition & grounding rules
-│   └── llm/               # Multi-provider LLM Adapter layer
-│       ├── base.py        # BaseLLMAdapter abstract interface
-│       ├── gemini.py      # Google Gemini provider adapter
-│       ├── openai.py      # OpenAI provider adapter
-│       ├── groq.py        # Groq provider adapter
-│       └── factory.py     # LLM Provider Factory (X-LLM-Provider routing)
+│   └── llm_service.py    # Dynamic LangChain LLM provider selector (get_llm)
 ├── models/                # Data Schemas (Pydantic)
 │   ├── request.py         # API Request models & header schemas
 │   └── response.py        # API Response & Metadata models

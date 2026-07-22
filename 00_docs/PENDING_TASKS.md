@@ -17,14 +17,10 @@
 
 ### Phase 3: Vector DB & Embedding Infrastructure
 - [x] Implement Qdrant Client Wrapper (`app/services/qdrant_service.py`) with automatic `tenant_id` payload index creation on startup.
-- [ ] Implement Jina Embeddings Client (`app/services/jina_service.py`) with per-request API key authentication.
+- [x] Implement Jina Embeddings Client (`app/services/jina_service.py`) with per-request API key authentication.
 
-### Phase 4: Dynamic LLM Provider Adapters
-- [ ] Define abstract base LLM adapter interface (`app/services/llm/base.py`).
-- [ ] Implement Google Gemini Provider Adapter (`app/services/llm/gemini.py`).
-- [ ] Implement OpenAI Provider Adapter (`app/services/llm/openai.py`).
-- [ ] Implement Groq Provider Adapter (`app/services/llm/groq.py`).
-- [ ] Implement LLM Factory (`app/services/llm/factory.py`) to instantiate adapters dynamically based on `X-LLM-Provider` header.
+### Phase 4: Dynamic LLM Provider Selection
+- [x] Implement unified LangChain `get_llm()` provider factory function (`app/services/llm_service.py`) supporting Google Gemini, OpenAI, and Groq.
 
 ### Phase 5: Document Parsing & Ingestion Pipeline
 - [ ] Implement PDF parser & semantic text chunking utility (`app/services/ingestion.py`) using in-memory `io.BytesIO`.
