@@ -25,7 +25,7 @@
 ### Phase 5: Document Parsing & Ingestion Pipeline
 - [x] Implement PDF parser & semantic text chunking utility (`app/services/ingestion.py`) using in-memory `io.BytesIO` and LangChain's `RecursiveCharacterTextSplitter`.
 - [x] Implement auto-update lifecycle (purge old chunks matching `(tenant_id, file_name)` prior to upserting).
-- [ ] Build `POST /ingest` API endpoint (`app/api/v1/ingest.py`).
+- [x] Build `POST /ingest` API endpoint (`app/api/v1/ingest.py`).
 
 ### Phase 6: RAG Query & Chat System
 - [ ] Implement RAG retriever logic with Qdrant tenant payload filtering (`tenant_id`).
