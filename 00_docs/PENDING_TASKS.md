@@ -28,9 +28,9 @@
 - [x] Build `POST /ingest` API endpoint (`app/api/v1/ingest.py`).
 
 ### Phase 6: RAG Query & Chat System
-- [ ] Implement RAG retriever logic with Qdrant tenant payload filtering (`tenant_id`).
-- [ ] Implement system prompt builder (merging default grounding rules with client dynamic system prompt).
-- [ ] Build `POST /chat` API endpoint (`app/api/v1/chat.py`).
+- [x] Implement RAG retriever logic (`app/services/rag_service.py`) with Qdrant tenant payload filtering (`tenant_id`).
+- [x] Implement system prompt builder (`app/services/prompt_builder.py`) (merging default grounding rules with client dynamic system prompt).
+- [x] Build `POST /chat` API endpoint (`app/api/v1/chat.py`).
 
 ### Phase 7: Document Management CRUD
 - [x] Implement `GET /documents` endpoint (listing distinct files & chunk counts for a tenant).
