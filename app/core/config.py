@@ -25,6 +25,11 @@ class Settings(BaseSettings):
     JINA_EMBEDDINGS_URL: str = "https://api.jina.ai/v1/embeddings"
     JINA_MODEL_NAME: str = "jina-embeddings-v3"
 
+    # LLM Provider Base API URLs
+    OPENAI_API_BASE: str = "https://api.openai.com/v1"
+    GROQ_API_BASE: str = "https://api.groq.com/openai/v1"
+    GEMINI_API_BASE: str = "https://generativelanguage.googleapis.com/v1beta"
+
     # LangSmith Observability & Tracing Configuration
     LANGSMITH_TRACING: bool = False
     LANGSMITH_ENDPOINT: str = "https://api.smith.langchain.com"

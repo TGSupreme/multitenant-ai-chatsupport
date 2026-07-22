@@ -55,3 +55,14 @@ class DeleteDocumentResponse(BaseModel):
     status: str = Field(default="success", description="Status string", example="success")
     tenant_id: str = Field(..., description="Tenant identifier", example="tenant_acme")
     message: str = Field(..., description="Deletion confirmation message", example="Successfully deleted document 'return_policy.pdf'.")
+
+
+class ModelListResponse(BaseModel):
+    """Response payload for GET /models endpoint."""
+    status: str = Field(default="success", description="Status string", example="success")
+    provider: str = Field(..., description="LLM provider name", example="gemini")
+    available_models: List[str] = Field(
+        default_factory=list,
+        description="List of available active model IDs for the provided API key",
+        example=["gemini-1.5-flash", "gemini-1.5-pro", "gemini-2.0-flash"],
+    )
