@@ -105,7 +105,7 @@ class QdrantService:
         tenant_id: str,
         query_vector: List[float],
         top_k: int = 4,
-    ) -> List[SourceChunk]:
+    ) -> List[Dict[str, Any]]:
         """Performs vector similarity search strictly filtered by tenant_id."""
         try:
             tenant_filter = qmodels.Filter(
@@ -117,26 +117,43 @@ class QdrantService:
                 ]
             )
 
-            results = await self.client.search(
-                collection_name=self.collection_name,
-                query_vector=query_vector,
-                query_filter=tenant_filter,
-                limit=top_k,
-            )
+            # Support query_points (qdrant-client v1.10+) with fallbacks for maximum compatibility
+            if hasattr(self.client, "query_points"):
+                query_res = await self.client.query_points(
+                    collection_name=self.collection_name,
+                    query=query_vector,
+                    query_filter=tenant_filter,
+                    limit=top_k,
+                )
+                results = query_res.points
+            elif hasattr(self.client, "search"):
+                results = await self.client.search(
+                    collection_name=self.collection_name,
+                    query_vector=query_vector,
+                    query_filter=tenant_filter,
+                    limit=top_k,
+                )
+            else:
+                results = await self.client.search_points(
+                    collection_name=self.collection_name,
+                    vector=query_vector,
+                    query_filter=tenant_filter,
+                    limit=top_k,
+                )
 
-            source_chunks = []
+            sources = []
             for res in results:
                 payload = res.payload or {}
-                source_chunks.append(
-                    SourceChunk(
-                        file_name=payload.get("file_name", "unknown"),
-                        chunk_index=payload.get("chunk_index", 0),
-                        page_number=payload.get("page_number"),
-                        text=payload.get("text", ""),
-                        score=round(res.score, 4) if res.score else None,
-                    )
+                sources.append(
+                    {
+                        "id": str(res.id),
+                        "file_name": payload.get("file_name", "unknown"),
+                        "page_number": payload.get("page_number"),
+                        "text": payload.get("text", ""),
+                        "score": round(res.score, 4) if res.score else None,
+                    }
                 )
-            return source_chunks
+            return sources
         except Exception as e:
             raise VectorStoreException(f"Failed to search tenant vectors: {str(e)}")
 

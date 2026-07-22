@@ -3,12 +3,10 @@ from pydantic import BaseModel, Field
 
 
 class SourceChunk(BaseModel):
-    """Represents a retrieved source document chunk used in RAG generation."""
+    """Represents a retrieved source document citation reference used in RAG generation."""
     file_name: str = Field(..., description="Original filename of the document", example="return_policy.pdf")
-    chunk_index: int = Field(..., description="Sequential index of the chunk", example=0)
     page_number: Optional[int] = Field(default=None, description="Page number in original document", example=1)
-    text: str = Field(..., description="Text content of the retrieved chunk", example="Returns are accepted within 30 days...")
-    score: Optional[float] = Field(default=None, description="Vector similarity similarity score", example=0.87)
+    score: Optional[float] = Field(default=None, description="Vector similarity score", example=0.87)
 
 
 class ChatResponse(BaseModel):
@@ -18,9 +16,20 @@ class ChatResponse(BaseModel):
     provider: str = Field(..., description="LLM provider used", example="gemini")
     model_name: str = Field(..., description="LLM model used", example="gemini-1.5-flash")
     answer: str = Field(..., description="Generated answer", example="You can return products within 30 days.")
-    sources: List[SourceChunk] = Field(
+    needs_escalation: bool = Field(
+        default=False,
+        description="Flag indicating if query requires human support escalation",
+        example=False,
+    )
+    escalation_reason: Optional[str] = Field(
+        default=None,
+        description="Reason for human escalation if triggered ('NO_MATCHING_DOCUMENTS', 'LOW_CONFIDENCE_SCORE', 'INSUFFICIENT_CONTEXT', 'HUMAN_AGENT_REQUESTED')",
+        example=None,
+    )
+    sources: List[str] = Field(
         default_factory=list,
-        description="Retrieved documentation chunks used to generate the answer",
+        description="List of cited vector chunk point IDs",
+        example=["c8a1b2d3-4e5f-6a7b-8c9d-0e1f2a3b4c5d"],
     )
 
 
