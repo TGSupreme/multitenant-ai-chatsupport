@@ -7,7 +7,7 @@
 ### Phase 1: Project Setup & Core Configuration
 - [x] Initialize Python virtual environment (`.venv`) & dependencies (`FastAPI`, `qdrant-client`, `pypdf`, `httpx`, `pydantic`).
 - [x] Create core configuration module (`app/core/config.py`) and `.example.env`.
-- [ ] Implement custom exception handlers and error response models (`app/core/errors.py`).
+- [x] Implement custom exception handlers and error response models (`app/core/errors.py`).
 
 ### Phase 2: Vector DB & Embedding Infrastructure
 - [ ] Implement Qdrant Client Wrapper (`app/services/qdrant_service.py`) with automatic `tenant_id` payload index creation on startup.

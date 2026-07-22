@@ -21,6 +21,10 @@ class Settings(BaseSettings):
     QDRANT_API_KEY: str = ""
     QDRANT_COLLECTION_NAME: str = "multitenant_chat_support"
 
+    # Jina Embeddings Configuration
+    JINA_EMBEDDINGS_URL: str = "https://api.jina.ai/v1/embeddings"
+    JINA_MODEL_NAME: str = "jina-embeddings-v3"
+
     # LangSmith Observability & Tracing Configuration
     LANGSMITH_TRACING: bool = False
     LANGSMITH_ENDPOINT: str = "https://api.smith.langchain.com"
