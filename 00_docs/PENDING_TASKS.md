@@ -16,7 +16,7 @@
 - [x] Implement Pydantic response models (`app/models/response.py`).
 
 ### Phase 3: Vector DB & Embedding Infrastructure
-- [ ] Implement Qdrant Client Wrapper (`app/services/qdrant_service.py`) with automatic `tenant_id` payload index creation on startup.
+- [x] Implement Qdrant Client Wrapper (`app/services/qdrant_service.py`) with automatic `tenant_id` payload index creation on startup.
 - [ ] Implement Jina Embeddings Client (`app/services/jina_service.py`) with per-request API key authentication.
 
 ### Phase 4: Dynamic LLM Provider Adapters
