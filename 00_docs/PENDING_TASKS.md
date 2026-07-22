@@ -23,8 +23,8 @@
 - [x] Implement unified LangChain `get_llm()` provider factory function (`app/services/llm_service.py`) supporting Google Gemini, OpenAI, and Groq.
 
 ### Phase 5: Document Parsing & Ingestion Pipeline
-- [ ] Implement PDF parser & semantic text chunking utility (`app/services/ingestion.py`) using in-memory `io.BytesIO`.
-- [ ] Implement auto-update lifecycle (purge old chunks matching `(tenant_id, file_name)` prior to upserting).
+- [x] Implement PDF parser & semantic text chunking utility (`app/services/ingestion.py`) using in-memory `io.BytesIO` and LangChain's `RecursiveCharacterTextSplitter`.
+- [x] Implement auto-update lifecycle (purge old chunks matching `(tenant_id, file_name)` prior to upserting).
 - [ ] Build `POST /ingest` API endpoint (`app/api/v1/ingest.py`).
 
 ### Phase 6: RAG Query & Chat System
