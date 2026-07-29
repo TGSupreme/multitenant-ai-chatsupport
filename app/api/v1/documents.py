@@ -10,7 +10,7 @@ router = APIRouter(tags=["Document Management"])
 
 @router.get("/documents", response_model=DocumentListResponse, summary="List registered documents for a tenant")
 async def list_documents(
-    tenant_id: str = Query(..., description="Tenant identifier", example="tenant_acme"),
+    tenant_id: str = Query(..., description="Tenant identifier", examples=["tenant_acme"]),
 ) -> DocumentListResponse:
     """Retrieves all registered file names and chunk counts for a given tenant_id."""
     if not tenant_id or not tenant_id.strip():
@@ -33,7 +33,7 @@ async def list_documents(
 
 @router.delete("/documents", response_model=DeleteDocumentResponse, summary="Delete specific document or wipe all tenant documents")
 async def delete_documents(
-    tenant_id: str = Query(..., description="Tenant identifier", example="tenant_acme"),
+    tenant_id: str = Query(..., description="Tenant identifier", examples=["tenant_acme"]),
     file_name: Optional[str] = Query(None, description="Optional filename to delete. If omitted, wipes all tenant documents."),
 ) -> DeleteDocumentResponse:
     """Deletes vector points for a specific document if file_name is provided, or wipes all tenant documents if omitted."""
