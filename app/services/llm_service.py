@@ -83,7 +83,7 @@ async def list_available_models(provider: str, api_key: str) -> List[str]:
     async with httpx.AsyncClient(timeout=15.0) as client:
         try:
             if provider_clean == PROVIDER_OPENAI:
-                url = f"{settings.OPENAI_API_BASE.rstrip('/')}/models"
+                url = f"{settings.OPENAI_MODELS_API_BASE.rstrip('/')}/models"
                 response = await client.get(
                     url,
                     headers={"Authorization": f"Bearer {api_key.strip()}"},
@@ -103,7 +103,7 @@ async def list_available_models(provider: str, api_key: str) -> List[str]:
                 return sorted(list(set(models)))
 
             elif provider_clean == PROVIDER_GROQ:
-                url = f"{settings.GROQ_API_BASE.rstrip('/')}/models"
+                url = f"{settings.GROQ_MODELS_API_BASE.rstrip('/')}/models"
                 response = await client.get(
                     url,
                     headers={"Authorization": f"Bearer {api_key.strip()}"},
@@ -123,7 +123,7 @@ async def list_available_models(provider: str, api_key: str) -> List[str]:
                 return sorted(list(set(models)))
 
             elif provider_clean == PROVIDER_GEMINI:
-                url = f"{settings.GEMINI_API_BASE.rstrip('/')}/models?key={api_key.strip()}"
+                url = f"{settings.GEMINI_MODELS_API_BASE.rstrip('/')}/models?key={api_key.strip()}"
                 response = await client.get(url)
                 if response.status_code != 200:
                     raise UpstreamProviderException(
